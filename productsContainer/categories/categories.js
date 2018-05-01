@@ -18,6 +18,7 @@ class Categories extends Component {
           key={c}
           categoryName={c}
           categoryCount={categoriesCount}
+          visibilityReducer={this.props.visibilityReducer}
         />
       );
     });
@@ -38,7 +39,8 @@ class Categories extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.products,
+    visibilityReducer: state.visibilityReducer
   }
 }
 

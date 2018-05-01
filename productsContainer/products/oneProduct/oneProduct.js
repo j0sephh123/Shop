@@ -26,7 +26,7 @@ const oneProduct = ({id, name, price, quantity, category, addFn, subtractFn, all
       style={{display: ''}}>
 
       <div className='card-header'><span className='productName '>{name}</span></div>
-      <img src='http://placehold.it/150x150' />
+      <img src='http://placehold.it/150x150' alt='' />
       <div className="card-body">
           <h4 className="card-title">Category: {category}</h4>
           <button onClick={addToCartFn}>Add to cart</button>
