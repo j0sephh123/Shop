@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import OneCategory from './OneCategory/OneCategory';
 import Add from './OneCategory/add';
-import {addNewCategory} from '../redux/actions';
+import {addNewCategory, removeCategory} from '../redux/actions';
 
 class ModifyCategory extends Component {
   state = {
@@ -13,7 +13,7 @@ class ModifyCategory extends Component {
   addNewCategoryFn = () => {
     this.props.addNewCategoryAction(this.state.addName);
     console.log('addNewCategoryFn');
-  }
+  } // action add new category
 
   onChangeHandler = (e) => {
     const name = e.target.name;
@@ -23,24 +23,34 @@ class ModifyCategory extends Component {
         [name] : value
       }
     });
+  } // change input
+
+  removeCategoryFn = (categoryName) => {
+    console.log('removeCategoryFn: ' + categoryName);
+    this.props.removeCategoryAction(categoryName)
   }
 
   render(){
     
     const renderAllCategories = Object.keys(this.props.categories).map(c => {
       return (
-        <OneCategory key={c} name={c} />
+        <OneCategory 
+          key={c} 
+          name={c} 
+          removeCategoryFn={this.removeCategoryFn}
+        />
       );
     });
     
     return (
       <ul className='border border-secondary m-1'>
-        <button onClick={() => this.setState({showAddForm: !this.state.showAddForm})}>New Category</button>
+        <button className='btn btn-primary' onClick={() => this.setState({showAddForm: !this.state.showAddForm})}>New Category</button>
         <div>        
         {this.state.showAddForm ? 
           <Add 
             onChangeHandler={this.onChangeHandler}
             addNewCategoryFn={this.addNewCategoryFn}
+
           /> 
         : null}
         </div>
@@ -58,7 +68,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewCategoryAction: (inputData) => dispatch(addNewCategory(inputData))
+    addNewCategoryAction: (inputData) => dispatch(addNewCategory(inputData)),
+    removeCategoryAction: (inputData) => dispatch(removeCategory(inputData))
   }
 }
 

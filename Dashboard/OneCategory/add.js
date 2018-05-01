@@ -2,8 +2,6 @@ import React from 'react';
 
 const Add = ({onChangeHandler, addNewCategoryFn}) => {
 
-
-
   return (
     <div>
     <input 
@@ -11,7 +9,7 @@ const Add = ({onChangeHandler, addNewCategoryFn}) => {
       name='addName'
       onChange={onChangeHandler}
     />
-      <button onClick={addNewCategoryFn}>Add</button>
+      <button className='btn btn-dark' onClick={addNewCategoryFn}>Add</button>
     </div>
   );
 }

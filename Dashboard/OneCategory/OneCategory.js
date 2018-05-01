@@ -1,20 +1,24 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 import {
   // removeCategory,
   // updateCategory
 } from '../../redux/actions';
 
-class OneCategory extends Component {
+const OneCategory = ({name, removeCategoryFn}) => {
 
-  render(){
-    return (
-      <div className='container border border-success mx-auto w-75'>
-        <li className='list-group-item'>{this.props.name}</li>
-      </div>
-    );
-  }
-  
+
+
+  return (
+    <div className='container mx-auto w-75'>
+      <li className='list-group-item d-flex justify-content-between align-items-center'>
+        {name}
+        <span className="badge badge-pill">
+          <button className='btn' onClick={() => removeCategoryFn(name)}>Remove</button>
+        </span>          
+      </li>
+    </div>
+  );
 }
 
 export default OneCategory;
