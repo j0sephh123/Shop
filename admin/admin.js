@@ -1,20 +1,18 @@
 import React from 'react';
-import Header from '../layout/header/header';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import AllForms from './AllForms';
 
 const admin = (props) => {
   
   return (
-    <div className='admin'>
-      <Header />
-      <div>Links
-        <ul>
-          <li>
-            <Link to={`${props.match.url}/addNewCategory`}>AddNewCategory</Link>
+    <div>
+      <div className='container-fluid'>
+        <ul className='nav nav-pills'>
+          <li className='nav-item'>
+            <Link className='nav-link' to={`${props.match.url}/modifyProduct`}>Modify Product</Link>
           </li>
-          <li>
-            <Link to={`${props.match.url}/addNewItem`}>AddNewItem</Link>
+          <li className='nav-item'>
+            <Link className='nav-link' to={`${props.match.url}/modifyCategory`}>Modify Category</Link>
           </li>
         </ul>
       </div>

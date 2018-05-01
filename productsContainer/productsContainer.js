@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import Products from './products/products';
-// import Header from '../layout/header/header';
-import Main from '../layout/main/main';
-import Aside from '../layout/aside/aside';
+import Categories from './categories/categories';
+import Products from '../productsContainer/products/products';
 
 let selectAllProductNames;
 
@@ -12,11 +10,9 @@ class ProductsContainer extends Component {
     this.state = {
       value: ''
     };
-    // 1 create ref
     this.myRef = React.createRef();
   }
   
-
   onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -48,20 +44,31 @@ class ProductsContainer extends Component {
 
   render() {
     return (
-      <div className='products'><br /><br /><br />
-        <div>
+      <div>
+        <div className="form-group w-50 mx-auto m-3">
           <input 
-            type='text' 
-            name='value' 
-            // onKeyDown={this.onKeyDown} 
-            // 2. Add ref to dom element
+            className='form-control' 
+            placeholder='Search'
+            type="text" 
+            name='value'
             ref={this.myRef}
-            onChange={this.onChange} value={this.state.value} />          
-        </div><br /><br /><br />
-        <Aside />
-        <Main />
-      </div>
-    )
+            onChange={this.onChange}
+            value={this.state.value}
+            />
+        </div>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-lg-3 col-md-3'>
+              <Categories />
+            </div>
+
+            <div className='col-lg-9 col-md-9 row'>
+              <Products />
+            </div>
+          </div>
+        </div>                    
+      </div>        
+    );
   }
 }
 

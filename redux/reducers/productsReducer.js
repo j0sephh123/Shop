@@ -1,23 +1,121 @@
+import {convertObjToArr} from '../../helperFunctions/helper';
+
 const productsState = {
   fruits: [
-    {id: 1, name: 'avocado', quantity: 5},
-    {id: 2, name: 'drugplod', quantity: 15},
-    {id: 3, name: 'fruit3', quantity: 22},
+    {id: 1, name: 'avocado', quantity: 5, price: 3.20, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 2, name: 'drugplod', quantity: 15, price: 4.10, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 3, name: 'fruit3', quantity: 22, price: 1.50, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
   ],
   vegetables: [
-    {id: 4, name: 'cucumber', quantity: 33},
-    {id: 5, name: 'vegetable16', quantity: 11},
-    {id: 6, name: 'veg1', quantity: 0},
+    {id: 4, name: 'cucumber', quantity: 33, price: 4.05, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 5, name: 'vegetable16', quantity: 11, price: 6.10, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 6, name: 'veg1', quantity: 0, price: 8.90, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 13, name: 'veg5', quantity: 13, price: 0.40, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
   ],
   meats:[
-    {id: 7, name: 'meat1', quantity: 1},
-    {id: 8, name: 'meat2', quantity: 4},
-    {id: 9, name: 'meat3', quantity: 6},
+    {id: 7, name: 'meat1', quantity: 1, price: 3.20, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 8, name: 'meat2', quantity: 4, price: 3.40, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 9, name: 'meat3', quantity: 6, price: 3.60, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 14, name: 'meat3', quantity: 16, price: 4.15, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 15, name: 'meat3', quantity: 3, price: 4.25, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
   ],
   eggs: [
-    {id: 10, name: 'egg1', quantity: 8},
-    {id: 11, name: 'egg2', quantity: 4},
-    {id: 12, name: 'egg3', quantity: 9},
+    {id: 10, name: 'egg1', quantity: 8, price: 5.20, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 11, name: 'egg2', quantity: 4, price: 4.70, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 12, name: 'egg3', quantity: 9, price: 3.90, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 16, name: 'egg4', quantity: 9, price: 4.60, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
+    {id: 17, name: 'egg5', quantity: 19, price: 1.90, additional: {
+      text1: 'text1',
+      text2: 'text2',
+       
+      text3: 'text3',
+    }},
+    {id: 18, name: 'egg6', quantity: 29, price: 1.80, additional: {
+      text1: 'text1',
+      text2: 'text2',
+      text3: 'text3',
+       
+    }},
   ]
 }
 
@@ -62,61 +160,61 @@ const productsReducer = (state = productsState, action) => {
       }
       return addItem(item, category, quantity, state);
     case 'REMOVE_ITEM': 
-      const categoryItem = action.payload.category;
-      const itemToRemove = action.payload.item;
-      function removeItem(category, item, state){
-        let itemToRemove = state[category].findIndex(i => i.name === item);
-        return ({
-          ...state, 
-          [category]: [
-            ...state[category].slice(0, itemToRemove),
-            ...state[category].slice(itemToRemove + 1)
-          ]
-        })
-      }
-      return removeItem(categoryItem, itemToRemove, state);
+      const productToDelete = action.payload;
+      // find the index of the item we want to remove in the corresponding category
+      let itemToRemoveIndex = state[productToDelete.category].findIndex((item, index, array ) => {
+        return productToDelete.id === item.id;
+      });
+      // SLICE
+      return {
+        ...state,
+        [productToDelete.category]: [
+          ...state[productToDelete.category].slice(0, itemToRemoveIndex),
+          ...state[productToDelete.category].slice(itemToRemoveIndex + 1),
+        ]
+      };
     case 'UPDATE_ITEM': 
-      const categoryUpdate = action.payload.category;
-      const itemToUpdate = action.payload.item;
-      const newValue = action.payload.newValue;
-      function updateItem(category, item, newVal, state){
-        console.log(newVal);
-        let itemToUpdate = state[category].filter(i => i.name === item);
-        itemToUpdate[0].name = newVal;
-        return {...state};
-      }
-      return updateItem(categoryUpdate, itemToUpdate, newValue, state);
-    case 'INCREASE_QUANTITY':
-      const itemIdToIncrease = Number(action.id);
+      const productToUpdate = action.payload.product;
+      const newVal = action.payload.newValue;
+      let itemToUpdate = state[productToUpdate.category].filter(i => i.id===productToUpdate.id);
+      itemToUpdate = itemToUpdate[0];
+      itemToUpdate.name = newVal;
+      return {...state}
+
+    case 'CHANGE_QUANTITY':
+      const howToChangeQuantity = action.plusOrMinus;
+      const itemIdToChange = Number(action.id);
       const actionCategoryToIncrease = action.category;
       return {
         ...state,
         [actionCategoryToIncrease]: state[actionCategoryToIncrease].map(fruit => {
-          if(fruit.id === itemIdToIncrease){
-            fruit.quantity ++;
+          if(fruit.id === itemIdToChange){
+            if(howToChangeQuantity === 'plus'){
+              fruit.quantity ++;
+            } else if (howToChangeQuantity === 'minus'){
+              fruit.quantity --;
+            }
             return fruit;
           } else {
             return fruit;
           }
         })
       };
+     
+    case 'CHANGE_PRICE':
+      const newPrice = action.payload.newPrice;
+      const product = action.payload.product;
+      
+      let itemToUpdatePriceTo = convertObjToArr(state).filter(i => i.id === product.id);
+      itemToUpdatePriceTo = itemToUpdatePriceTo[0];
+      itemToUpdatePriceTo.price = newPrice;
+      
+      return {
+        ...state,
+        [itemToUpdatePriceTo.category] : [...state[itemToUpdatePriceTo.category]]  
+      }
     
-    case 'DECREASE_QUANTITY':   
-      const itemIdToDecrease = Number(action.id);
-        const actionCategoryToDecrease = action.category;
-        return {
-          ...state,
-          [actionCategoryToDecrease]: state[actionCategoryToDecrease].map(fruit => {
-            if(fruit.id === itemIdToDecrease){
-              fruit.quantity --;
-              return fruit;
-            } else {
-              return fruit;
-            }
-          })
-        };   
-
-      default: return state;
+    default: return state;
   }
 }
 

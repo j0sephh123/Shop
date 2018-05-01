@@ -1,16 +1,22 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import OneProduct from './oneProduct/oneProduct';
-import {increaseQuantity, decreaseQuantity} from '../../redux/actions';
 
 class Products extends Component {
   
   render(){
-    const allProductsMap = Object.entries(this.props.allProducts).map(([k, v], index, array) => {
+
+    let allProductsMap = Object.entries(this.props.allProducts).map(([k, v], index, array) => {
       v.map((item, i, a) => a[i]['category'] = k);
       return v;
     }).reduce( (tot, cur, i) => [...tot, ...cur] );
   
+    if(this.props.filter === 'showAll'){
+      
+    } else {
+      allProductsMap = allProductsMap.filter(i => i.category === this.props.filter);
+    }
+
     const oneProductMap = allProductsMap.map((product, index, array) => {
       return (
         <OneProduct 
@@ -19,8 +25,7 @@ class Products extends Component {
           name={product.name}
           quantity={product.quantity}
           category={product.category}
-          addFn={() => this.props.increaseAction(product.id, product.category)}
-          subtractFn={() => this.props.decreaseAction(product.id, product.category)}
+          price={product.price}
         />
       );
     });
@@ -30,15 +35,11 @@ class Products extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    allProducts : state.products
+    allProducts : state.products,
+    filter: state.visibilityReducer
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    increaseAction: (p, c) => dispatch(increaseQuantity(p, c)),
-    decreaseAction: (p, c) => dispatch(decreaseQuantity(p, c))
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+
+export default connect(mapStateToProps, null)(Products);

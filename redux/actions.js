@@ -1,4 +1,4 @@
-// import store from '../redux/store';
+
 
 export const addNewCategory = (inputData) => {
   return {
@@ -32,42 +32,63 @@ export const addItemToCategory = (category, item, quantity) => {
   }
 } // added
 
-export const removeItem = (category, item) => {
+export const removeItem = (product) => {
   return {
     type: 'REMOVE_ITEM',
-    payload: {
-      category,
-      item
-    }
+    payload: product
   }
-} // in process of adding
+} // added
 
-export const updateItem = (category, item, newValue) => {
+export const updateItem = (product, newValue) => {
   return {
     type: 'UPDATE_ITEM',
     payload: {
-      category,
-      item,
+      product,
       newValue
     }
   }
-} // in process of adding
+} // added
 
-export const increaseQuantity = (itemId, productcategory) => {
+export const quantityAction = (itemId, productcategory, plusOrMinus) => {
   return {
-    type: 'INCREASE_QUANTITY',
+    type: 'CHANGE_QUANTITY',
     id: itemId,
-    category: productcategory
-  } // added
+    category: productcategory,
+    plusOrMinus
+  } 
 } // added 
-// export const boundIncreaseQuantity = (itemId, productcategory) => store.dispatch(increaseQuantity(itemId, productcategory));
 
-export const decreaseQuantity = (itemId, productcategory) => {
+export const addToCart = (object) => {
   return {
-    type: 'DECREASE_QUANTITY',
-    id: itemId,
-    category: productcategory
-  } // added
-} // added 
-// export const boundDecreaseQuantity = (itemId, productcategory) => store.dispatch(decreaseQuantity(itemId, productcategory));
-// finished 
+    type: 'ADD_TO_CART',
+    payload: object
+  }
+} // works
+
+export const removeFromCart = (object) => {
+  return {
+    type: 'REMOVE_FROM_CART',
+    payload: object
+  }
+} // works
+
+export const changePrice = (product, newPrice) => {
+  return {
+    type: 'CHANGE_PRICE',
+    payload: {product, newPrice}
+  }
+} // works like a charm
+
+export const visibility = (category) => {
+  return {
+    type: 'VISIBILITY_FILTER',
+    category
+  }
+} // works
+
+export const select = (id) => {
+  return {
+    type: 'SELECT',
+    id
+  }
+} // works

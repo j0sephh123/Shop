@@ -1,14 +1,15 @@
 import React from 'react';
-import AddNewCategory from './form/AddNewCategory'
-import AddNewItem from './form/AddNewItem'
+import ModifyProduct from '../Dashboard/ModifyProduct';
+import ModifyCategory from '../Dashboard/ModifyCategory';
+import {Route, Switch} from 'react-router-dom';
 
-const AllForms = (props) => {
-  switch(props.match.url){
-    case '/admin/addNewCategory':
-      return(<AddNewCategory />);
-    case '/admin/addNewItem':
-      return(<AddNewItem />);
-    default: return(<div>No Route Matched</div>);
-  }
+const AllForms = () => {
+  return (
+    <Switch>
+      <Route exact path='/admin/modifyProduct' component={ModifyProduct}></Route>
+      <Route exact path='/admin/modifyCategory' component={ModifyCategory}></Route>
+    </Switch>
+  )
 }
+
 export default AllForms;
