@@ -10,6 +10,11 @@ class Categories extends Component {
     this.props.visibilityAction('showAll')
   }
 
+  visibilityFilterFn = (arg) => {
+    console.log('visibilityFilterFn');
+    this.props.visibilityAction(arg)
+  }
+
   render(){
     const categoriesCount = addCategoriesToArrays(this.props.products);
     const allCategories = Object.keys(this.props.products).map(c => {
@@ -19,6 +24,7 @@ class Categories extends Component {
           categoryName={c}
           categoryCount={categoriesCount}
           visibilityReducer={this.props.visibilityReducer}
+          visibilityFilterFn={this.visibilityFilterFn}
         />
       );
     });

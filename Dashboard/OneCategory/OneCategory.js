@@ -20,7 +20,7 @@ const OneCategory = ({
       <li className='list-group-item d-flex justify-content-between align-items-center'>
         {name}
         <span className="badge badge-pill">
-          <button className='btn' onClick={() => showEditFormFn()}>Edit</button>
+          <button className='btn' onClick={() => showEditFormFn()}><i className="fas fa-edit"></i></button>
             {showEditForm ?
               <div>
                 <input 
@@ -33,7 +33,7 @@ const OneCategory = ({
                 <button className='btn btn-primary' onClick={() => updateCategoryFn(name)}>Complete Edit</button> 
               </div>
             : null}
-          <button className='btn' onClick={() => removeCategoryFn(name)}>Remove</button>          
+          <button className='btn' onClick={() => removeCategoryFn(name)}><i className="fas fa-window-close"></i></button>          
         </span>          
       </li>
     </div>

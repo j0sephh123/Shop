@@ -14,7 +14,7 @@ const nav = (props) => {
     <nav className={styles.nav.join(' ')}>
       <ul className={styles.ul.join(' ')}>
         <li className={styles.li}>
-          <Link className={styles.link} to='/home'>Home</Link>
+          <Link className={styles.link} to='/home'><i className="fas fa-home"></i></Link>
         </li>
         <li className={styles.li}>
           <Link className={styles.link} to='/products'>Products</Link>
@@ -23,7 +23,7 @@ const nav = (props) => {
           <Link className={styles.link} to='/admin'>Admin</Link>
         </li>
         <li className={styles.li}>
-          <Link className={styles.link} to='/cart'>Cart {props.cart.count} || ${(props.cart.price).toFixed(2)}</Link>
+          <Link className={styles.link} to='/cart'><i className="fas fa-shopping-cart"></i> {props.cart.count} || ${(props.cart.price).toFixed(2)}</Link>
         </li>
       </ul>
     </nav>

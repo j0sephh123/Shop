@@ -15,7 +15,6 @@ const oneProduct = ({id, name, price, quantity, category, addFn, subtractFn, all
     let array = convertObjToArr(allItems);
     let itemWeWantToRemove = array.filter(item => item.id === id);
     itemWeWantToRemove = itemWeWantToRemove[0];
-    
     removeFromCart(itemWeWantToRemove);
   }
 
@@ -24,15 +23,17 @@ const oneProduct = ({id, name, price, quantity, category, addFn, subtractFn, all
     <div 
       className='card border-primary col-lg-3 col-md-3 mb-3' 
       style={{display: ''}}>
-
-      <div className='card-header'><span className='productName '>{name}</span></div>
       <img src='http://placehold.it/150x150' alt='' />
+
+      <div className='card-header'><span className='productName'>{name}</span></div>
+
       <div className="card-body">
-          <h4 className="card-title">Category: {category}</h4>
-          <button onClick={addToCartFn}>Add to cart</button>
-          <button onClick={removeFromCartFn}>Remove from cart</button>
-        <p>Quantity: {quantity}</p>
-        <p>price: {price}</p>
+
+          <button className='btn' onClick={addToCartFn}><i className="fas fa-plus"></i></button>
+          <button className='btn' onClick={removeFromCartFn}><i className="fas fa-minus"></i></button><hr />
+        <p>Quantity: {quantity}</p><hr />
+        <p>price: {price}</p><hr />
+        <div className="card-footer">Category: {category}</div>
       </div>
   
     </div>
