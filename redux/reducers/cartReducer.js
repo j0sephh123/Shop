@@ -15,7 +15,7 @@ const cartReducer = (state = initialState, action) => {
             ...action.payload,
             quantity: 1
           }],
-          price: state.price + 10,
+          price: state.price + action.payload.price,
           count: state.count += 1
         }
       } else {
@@ -26,7 +26,7 @@ const cartReducer = (state = initialState, action) => {
             }
             return p
           }),
-          price: state.price + 10,
+          price: state.price + action.payload.price,
           count: state.count += 1
         }
       }
