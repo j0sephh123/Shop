@@ -13,7 +13,7 @@ const oneCategory = ({
       onClick={() => visibilityFilterFn(categoryName)}
       style={
         visibilityReducer === categoryName 
-          ? {backgroundColor: 'gray'} 
+          ? {backgroundColor: '#eee'} 
           : {backgroundColor: 'white'}
       }
       className='list-group-item d-flex justify-content-between align-items-center'>
