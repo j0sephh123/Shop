@@ -19,10 +19,12 @@ const oneProduct = ({
 }) => {
 
   const addToCartFn = (id, category, plusOrMinus) => {
-    let array = convertObjToArr(allItems);
-    let itemWeWantToAdd = array.filter(item => item.id === id)[0];
-    addToCart(itemWeWantToAdd);
-    quantityAction(id, category, plusOrMinus);
+    if(quantity > 0){
+      let array = convertObjToArr(allItems);
+      let itemWeWantToAdd = array.filter(item => item.id === id)[0];
+      addToCart(itemWeWantToAdd);
+      quantityAction(id, category, plusOrMinus);
+    }
   }
 
   const removeFromCartFn = (id, category, plusOrMinus) => {

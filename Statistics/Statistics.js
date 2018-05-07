@@ -121,7 +121,7 @@ class Statistics extends Component {
   }
 
   render() {
-    console.log('render');
+    
       
     const renderTable = this.props.items.map((item, index, array) => { 
         if (index % 2 === 0) {
@@ -140,7 +140,7 @@ class Statistics extends Component {
         });
     
     return ( 
-    <React.Fragment>
+    <div className='container'>
 
       <table className="table table-hover">
         <thead>
@@ -165,7 +165,7 @@ class Statistics extends Component {
           {renderTable}
         </tbody>
       </table>
-    </React.Fragment>
+    </div>
     );
   }
 }
