@@ -10,6 +10,7 @@ import Statistics from '../Statistics/Statistics';
 const routes = () => {
   return (
     <Switch>
+      <Route exact path='/' component={Home}></Route>
       <Route exact path='/home' component={Home}></Route>
       <Route exact path='/products' component={ProductsContainer}></Route>
       <Route exact path='/products/:id' component={ShowRoute}></Route>

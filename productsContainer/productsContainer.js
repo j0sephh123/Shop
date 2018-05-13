@@ -14,6 +14,7 @@ class ProductsContainer extends Component {
   }
   
   onChange = (e) => {
+    console.log('onchange');
     const name = e.target.name;
     const value = e.target.value;
     this.setState(() => {
@@ -43,9 +44,10 @@ class ProductsContainer extends Component {
   }
 
   render() {
+    console.log(this.state.value);
     return (
       <div>
-        <div className="form-group w-50 mx-auto m-3">
+        {/* <div className="form-group w-50 mx-auto m-3">
           <input 
             className='form-control' 
             placeholder='Search'
@@ -55,7 +57,7 @@ class ProductsContainer extends Component {
             onChange={this.onChange}
             value={this.state.value}
             />
-        </div>
+        </div> */}
         <div className='container'>
           <div className='row'>
             <div className='col-lg-3 col-md-3'>

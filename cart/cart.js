@@ -36,7 +36,8 @@ class Cart extends Component {
           <div className='row'>
             <div>
               <h5>Cart</h5>
-              <p>Number of items: {this.props.cart.products.length}</p>
+              <p>Number of items of one type: {this.props.cart.products.length}</p>
+              <p>Total sum: ${this.props.cart.price}</p>
             </div>
           </div>
           <div className='row'>
@@ -48,6 +49,9 @@ class Cart extends Component {
             </div>
           </div>
         </div>
+        <form className='container'>
+          <button className='btn btn-primary btn-block'>Checkout (refreshes page... )</button>
+        </form>
       </div>
     );
   }

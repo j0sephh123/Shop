@@ -26,7 +26,21 @@ const Home = () => {
       <p>
         On information about each product "Leave comment" is now functional.
         11/05/18. 
-        I fully realize that it doesn't look pretty enough, 
+        I fully realize that it doesn't look pretty enough, but currently I'm focusing
+        on the state management part of it with the purpose of making it easy to manage
+        when it grows bigger and Redux helps a lot with that. 
+        I get it that there are things that don't work as intended and so on. My biggest
+        problem is that I always want everything to be perfect, so with this small project
+        I forced myself out of that mode and made myself post a "finished" project perfectly
+        knowing there is a LOT to be done.
+      </p>
+      <p>
+        13/05/18
+        Added simple but nice looking validation (at least to me) to Dashboard/Modify Category.
+        Fixed price not to be negative.
+        Update form cant be shorter than 3-4 symbols...
+        
+
       </p>
     </div>
   );

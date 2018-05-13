@@ -43,7 +43,7 @@ const oneProduct = ({
         style={{display: ''}}>
         <img className="card-img-top" src="http://placehold.it/700x400" alt="" />
 
-        {/* <div className='card-header'><span className='productName'>{name}</span></div> */}
+        <div className='card-header'><span className='productName'>{name}</span></div>
         <h4 className=" mt-2 card-title">
           <Link to={`/products/${id}`}>{name}</Link>
         </h4>

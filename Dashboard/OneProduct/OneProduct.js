@@ -53,7 +53,7 @@ class OneProduct extends Component {
         </li>
         <li className='list-group-item'>
           <button onClick={this.showPriceFormFn}>Change Price</button>
-          <button onClick={this.onRemoveItem}>Remove Working</button>
+          <button onClick={this.onRemoveItem}>Remove</button>
           <button onClick={this.showUpdateFormFn}>Update</button>
         </li>
         <li className='list-group-item'>
