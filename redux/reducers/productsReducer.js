@@ -239,14 +239,14 @@ const productsReducer = (state = productsState, action) => {
       };
     case 'UPDATE_ITEM':
       const newVal = action.payload.newValue;
-      if(newVal.trim().length > 3){
-        const productToUpdate = action.payload.product;
-        let itemToUpdate = state[productToUpdate.category].filter(i => i.id===productToUpdate.id);
-        itemToUpdate = itemToUpdate[0];
-        itemToUpdate.name = newVal;
-        return {...state}
-      }
-      return state;
+      
+      const productToUpdate = action.payload.product;
+      let itemToUpdate = state[productToUpdate.category].filter(i => i.id === productToUpdate.id)[0];
+      itemToUpdate.name = newVal;
+      console.log(state);
+      return {...state};
+      
+
 
     case 'CHANGE_QUANTITY':
       const howToChangeQuantity = action.plusOrMinus;

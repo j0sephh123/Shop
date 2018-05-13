@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {changePrice, removeItem, updateItem} from '../../redux/actions';
+import {inputClassNameFn} from '../../helperFunctions/helper';
 
 class OneProduct extends Component {
   state = {
     showPriceForm: false,
     showUpdateForm: false,
     newUpdateValue: '',
-    price: 0
+    price: 0,
+    errors: null,
   }
   
   showPriceFormFn = () => {
@@ -19,7 +21,14 @@ class OneProduct extends Component {
   } // show update form
 
   onUpdateFn = () => {
-    this.props.updateItemAction(this.props.product, this.state.newUpdateValue);
+    let updateName = this.state.newUpdateValue.trim();
+    if(updateName.length <= 3 || updateName.length >= 15) {
+      this.setState(() => ({errors: 'invalidLength'}));
+      return;
+    }
+    this.setState(() => ({errors: 'empty'}));
+    console.log(updateName);
+    this.props.updateItemAction(this.props.product, updateName);
   } // update action
 
   onChangeHandler = (e) => {
@@ -41,6 +50,9 @@ class OneProduct extends Component {
   } // remove action
 
   render(){
+
+    let inputClassName = inputClassNameFn(this.state.errors);
+
     return (
       <div className='border border-secondary m-1'>
         <li className='list-group-item d-flex justify-content-between align-items-center'>
@@ -74,13 +86,15 @@ class OneProduct extends Component {
           {this.state.showUpdateForm ? 
 
             <fieldset>
-            <legend>Update Form</legend>
-              <input 
+            <legend>Update the name of the product</legend>
+              <input
+                className={inputClassName.className}
                 type='text'
                 name='newUpdateValue'  
                 value={this.state.newUpdateValue}
                 onChange={this.onChangeHandler}  
               />
+              {inputClassName.message}
               <button onClick={this.onUpdateFn}>Submit</button>
             </fieldset>
 
