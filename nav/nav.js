@@ -16,7 +16,10 @@ const nav = (props) => {
   return (
     <React.Fragment>
     <nav className={styles.nav.join(' ')}>
-      
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <Link className="navbar-brand ml-3" to='/home'><i className="fas fa-home"></i></Link>
       
       <ul className={styles.ul.join(' ')}>
@@ -33,6 +36,7 @@ const nav = (props) => {
           <Link className={styles.link} to='/cart'><i className="fas fa-shopping-cart"></i> {props.cart.count} || ${(props.cart.price).toFixed(2)}</Link>
         </li>
       </ul>
+    </div>
     </nav><br /><br /><br />
     </React.Fragment>
   );

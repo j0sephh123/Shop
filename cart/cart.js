@@ -2,8 +2,23 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import OneCartItem from './OneCartItem';
 import ShowItem from './ShowItem';
+import Modal from './Modal';
+import OrderSummary from './orderSummary';
 
 class Cart extends Component {
+  state = {
+    showModal: false
+  }
+
+  showModalFn = () => {
+    this.setState(() => ({showModal: true}));    
+  } // shows modal
+
+  backdropClickHandler = () => {
+    this.setState(() => ({showModal: false}));
+  } // on backdrop click removes modal
+
+
 
   render(){
 
@@ -16,8 +31,7 @@ class Cart extends Component {
         <ShowItem key={item.id} characteristics={item} />
       );
     });
-    
-    
+        
     const allCartProductsMap = allCartProducts.map((p, i, arr) => {
       return (
         <OneCartItem
@@ -29,14 +43,28 @@ class Cart extends Component {
         />
       );
     });
-
+    
     return (
       <div>
+        {this.state.showModal ? 
+          <Modal 
+          show={this.state.showModal}
+          backdropClickHandler={this.backdropClickHandler}
+            >
+            <OrderSummary 
+              price={this.props.cart.price}
+              count={this.props.cart.count}
+              products={this.props.cart.products}
+            />
+          </Modal>
+        : null}                
+        
+        
         <div className='container'>
           <div className='row'>
             <div>
               <h5>Cart</h5>
-              <p>Number of items of one type: {this.props.cart.products.length}</p>
+              <p>Number of items per type: {this.props.cart.products.length}</p>
               <p>Total sum: ${this.props.cart.price}</p>
             </div>
           </div>
@@ -49,9 +77,9 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-        <form className='container'>
-          <button className='btn btn-primary btn-block'>Checkout (refreshes page... )</button>
-        </form>
+          <button 
+            onClick={this.showModalFn}
+            className='btn btn-primary btn-block'>Checkout</button>
       </div>
     );
   }

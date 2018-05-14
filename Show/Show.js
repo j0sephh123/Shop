@@ -27,11 +27,6 @@ class ShowRoute extends Component {
       posts: [...this.state.posts, {id: counter++, date: newdate, author: this.state.authorName, text: this.state.value}]
     }));
     
-    
-    console.log(this.state.posts)
-
-      
-    
 
   }
 
