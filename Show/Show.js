@@ -23,10 +23,11 @@ class ShowRoute extends Component {
 
     let newdate = year + "/" + month + "/" + day;
 
-    this.setState(() => ({
-      posts: [...this.state.posts, {id: counter++, date: newdate, author: this.state.authorName, text: this.state.value}]
-    }));
-    
+    if(this.state.authorName.length > 3 || this.state.authorName.length < 15 || this.state.value.length.trim() > 3 || this.state.value.length.trim() < 255){
+      this.setState(() => ({
+        posts: [...this.state.posts, {id: counter++, date: newdate, author: this.state.authorName, text: this.state.value}]
+      }));
+    }
 
   }
 
@@ -35,8 +36,8 @@ class ShowRoute extends Component {
   }
 
   onInputChange = (e) => {
-    const data = e.target.name;
-    const value = e.target.value;
+    const data = e.target.name.trim();
+    const value = e.target.value.trim();
     this.setState(() => ({[data] : value}))
   }
 

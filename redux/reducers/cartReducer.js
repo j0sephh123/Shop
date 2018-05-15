@@ -15,7 +15,7 @@ const cartReducer = (state = initialState, action) => {
             ...action.payload,
             quantity: 1
           }],
-          price: state.price + action.payload.price,
+          price: Math.round(state.price + action.payload.price),
           count: state.count += 1
         }
       } else {
@@ -26,7 +26,7 @@ const cartReducer = (state = initialState, action) => {
             }
             return p
           }),
-          price: state.price + action.payload.price,
+          price: state.price + Math.round(action.payload.price),
           count: state.count += 1
         }
       }
@@ -45,7 +45,7 @@ const cartReducer = (state = initialState, action) => {
               }
               return p
             }),
-            price: state.price - action.payload.price,
+            price: Math.round(state.price - action.payload.price),
             count: state.count -= 1
           }
         }  
@@ -58,7 +58,7 @@ const cartReducer = (state = initialState, action) => {
           newProductsState.splice(indexOfItemToDelete, 1);
           return {
             products: [...newProductsState],
-            price: state.price - action.payload.price,
+            price: Math.round(state.price - action.payload.price),
             count: state.count -= 1
           }
         }
